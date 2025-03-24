@@ -8,21 +8,26 @@ container.classList.add("flex", "autoMargins");
 const title = document.createElement("h1");
 title.classList.add("autoMargins");
 title.id= "title";
-title.textContent=("Title");
+title.textContent=("Etch-a-Sketch");
 body.appendChild(title);
 document.getElementById("title").style.order="1";
 
 const button = document.createElement("button");
 button.id = "button";
 button.classList.add("flex", "autoMargins");
-button.textContent=("Submit");
+button.textContent=("Replay");
 body.appendChild(button);
 document.getElementById("button").style.order="2";
 
 
 button.addEventListener("click", ()=> {
     container.innerHTML='';
-    size=prompt("enter number of boxes:");
+    size=prompt("Enter a number between 1-50:");
+    if(size<=0 || size >50){
+
+        size=prompt("Number must be between 1 and 50. Enter a number between 1-50:");
+        createBoxes(size);
+    }
     createBoxes(size);
 });
 

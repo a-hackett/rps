@@ -31,9 +31,10 @@ body{
 
 #button{
     background-color: blue;
+    color:white;
     justify-content: center;
-    padding:0;
-    margin:0;
+    padding: 5px;
+    margin-bottom: 5px;
 }
 
 #title{
