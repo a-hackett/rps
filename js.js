@@ -1,101 +1,51 @@
+const body = document.querySelector("body");
+body.classList.add("flex");
 
-const body=document.querySelector("body");
-const box=document.createElement("div");
+const title = document.createElement("h1");
+title.classList.add("autoMargins");
+title.id= "title";
+title.textContent=("Title");
+body.appendChild(title);
+document.getElementById("title").style.order="1";
 
-const rockButton = document.createElement("button");
-rockButton.textContent="Rock";
-box.appendChild(rockButton);
+const button = document.createElement("button");
+button.id = "button";
+button.classList.add("flex", "autoMargins");
+button.textContent=("Submit");
+button.addEventListener("click", ()=> {
+    size=0;
+    size=prompt("enter number of boxes:");
+    createBoxes(size);
+    console.log(size);
+    });
 
-const paperButton = document.createElement("button");
-paperButton.textContent="Paper";
-box.appendChild(paperButton);
+body.appendChild(button);
+document.getElementById("button").style.order="2";
 
-const scissorsButton = document.createElement("button");
-scissorsButton.textContent="Scissors";
-box.appendChild(scissorsButton);
-body.appendChild(box);
+const container = document.querySelector("#container");
+document.getElementById("container").style.order="3";
+container.classList.add("flex", "autoMargins");
 
-function getHumanChoice(){
-    rockButton.addEventListener("click",()=>{
-        playGame("rock");
-    })
-    paperButton.addEventListener("click",()=>{
-        playGame("paper");
-    })
-    scissorsButton.addEventListener("click",()=>{
-        playGame("scissors");
-    })
-}
-
-function getComputerChoice(){
-    let randNum = Math.random().toFixed(1); //round random number to highest tenth
-    // console.log(randNum);
-    let cChoice; 
+function createBoxes(size){
+    if(size<100){
+        for (let i=0;i<size;i++){
+            const row = document.createElement("div");
+            row.classList.add("flex","row");
+            console.log("i", i)
     
-    if (randNum>=0 && randNum<=0.2){
-        cChoice="rock";
-        // console.log(computerChoice);
-    } 
-    else if (randNum>=0.3 && randNum<=0.6){
-        cChoice="paper";
-        // console.log(computerChoice);
-    } 
-    else if (randNum>=0.7){
-        cChoice="scissors";
-        // console.log(computerChoice);
-    }
-    return cChoice;
-}
+            for (let j=0;j<size;j++){
+                const box = document.createElement("div");
+                box.classList.add("box");
+                row.append(box);
+                console.log("j", j);
 
-function playRound(humanChoice){
-    if (computerChoice === humanChoice){
-        console.log("draw")
-        console.log(computerChoice, humanChoice);
-    } else if (computerChoice == "rock" && humanChoice == "paper"){
-        humanScore++; 
-        console.log(computerChoice, humanChoice);
-        
-    } else if (computerChoice == "rock" && humanChoice == "scissors"){
-        computerScore++; //;
-        console.log(computerChoice, humanChoice);           
-    } else if (computerChoice == "paper" && humanChoice == "rock"){
-        computerScore++; //;
-        console.log(computerChoice, humanChoice);       
-    } else if (computerChoice == "paper" && humanChoice == "scissors"){
-        humanScore++; //;
-        console.log(computerChoice, humanChoice);  
-    } else if (computerChoice == "scissors" && humanChoice == "paper"){
-        computerScore++; //;
-        console.log(computerChoice, humanChoice);    
-    } else if (computerChoice == "scissors" && humanChoice == "rock"){
-        humanScore++; //;
-        console.log(computerChoice, humanChoice);
+                box.addEventListener('mouseover', () => {
+                    box.style.backgroundColor = 'green';
+                    });
+            }
+            container.appendChild(row);
+        }
     }
 }
 
-function playGame(humanChoice){
-    computerChoice=getComputerChoice();
-    playRound(humanChoice, computerChoice)
-    let message; 
-
-    console.log(humanScore, computerScore);
-
-    if (humanScore==5){
-        message=`You win! SCORE: Human=${humanScore} Comp=${computerScore}`;
-        console.log(message);
-    }else if (computerScore==5){
-        message = `You Lose. SCORE: Human=${humanScore} Comp=${computerScore}`;
-        console.log(message);
-        humanScore=0; 
-        computerScore=0;
-    }
-
-    const resultsBox = document.createElement("div");
-    resultsBox.textContent=message;
-    body.appendChild(resultsBox);
-}
-
-
-let humanScore=0, computerScore=0;
-let humanChoice, computerChoice;
-getHumanChoice();
+button.click()

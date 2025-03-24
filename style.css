@@ -1,0 +1,43 @@
+.flex{
+    display: flex;
+}
+
+.autoMargins{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body{
+    flex-direction: column;
+}
+
+#container {
+    flex-direction: column;
+    border-style:solid;
+    flex-wrap: wrap;
+    width:640px;
+    height:640px;
+}
+
+.row{
+    flex-direction: row;
+    flex-grow:1;
+    padding:0
+}
+
+.box{
+    border-style:solid;
+    border-color: green;
+    flex-grow:1;
+}
+
+#button{
+    background-color: blue;
+    justify-content: center;
+    padding:0;
+    margin:0;
+}
+
+#title{
+    text-align: center;
+}
