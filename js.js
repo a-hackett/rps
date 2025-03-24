@@ -13,39 +13,41 @@ button.id = "button";
 button.classList.add("flex", "autoMargins");
 button.textContent=("Submit");
 button.addEventListener("click", ()=> {
-    size=0;
-    size=prompt("enter number of boxes:");
-    createBoxes(size);
-    console.log(size);
+    console.log("here");
+    container.innerHTML='';
+    createBoxes(0);
     });
-
 body.appendChild(button);
 document.getElementById("button").style.order="2";
+
 
 const container = document.querySelector("#container");
 document.getElementById("container").style.order="3";
 container.classList.add("flex", "autoMargins");
 
 function createBoxes(size){
-    if(size<100){
+    if(size==0){
+        console.log("in 0")
+        size=prompt("enter number of boxes:");
+    }
+    if(size>0 && size<100){
         for (let i=0;i<size;i++){
             const row = document.createElement("div");
             row.classList.add("flex","row");
-            console.log("i", i)
-    
+
             for (let j=0;j<size;j++){
                 const box = document.createElement("div");
                 box.classList.add("box");
-                row.append(box);
-                console.log("j", j);
-
                 box.addEventListener('mouseover', () => {
-                    box.style.backgroundColor = 'green';
-                    });
-            }
-            container.appendChild(row);
+                    const randomHexColorCode = () => {
+                        let n = (Math.random() * 0xfffff * 1000000).toString(16);
+                        return '#' + n.slice(0, 6);
+                      };
+                      
+                    box.style.backgroundColor = randomHexColorCode();
+                });
+                row.append(box);
+            }container.appendChild(row);
         }
     }
-}
-
-button.click()
+}button.click(true)
