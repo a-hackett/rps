@@ -26,8 +26,6 @@ body{
 }
 
 .box{
-    border-style:solid;
-    border-color: green;
     flex-grow:1;
 }
 
